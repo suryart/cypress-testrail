@@ -124,6 +124,7 @@ class TestRail {
             '/add_results_for_cases/' + runID,
             postData,
             (response) => {
+                ColorConsole.success('  response.data: ' + JSON.stringify(response.data));
                 const resultId = response.data[0].id;
 
                 ColorConsole.success('  TestRail result ' + resultId + ' sent for TestCase C' + result.getCaseId());
