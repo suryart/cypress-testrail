@@ -126,9 +126,9 @@ class TestRail {
             (response) => {
                 ColorConsole.success('  response.status: ' + response.status);
                 ColorConsole.success('  response.statusText: ' + response.statusText);
-                ColorConsole.success('  response.headers: ' + response.headers);
-                ColorConsole.success('  response.config: ' + response.config);
-                ColorConsole.success('  response.request: ' + response.request);
+                ColorConsole.success('  response.headers: ' + JSON.stringify(response.headers));
+                ColorConsole.success('  response.config: ' + JSON.stringify(response.config));
+                ColorConsole.success('  response.request: ' + JSON.stringify(response.request));
                 ColorConsole.success('  response.data: ' + JSON.stringify(response.data));
                 const resultId = response.data[0].id;
 
