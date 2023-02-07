@@ -155,7 +155,7 @@ class TestRail {
                 }
                 ColorConsole.error('actualError.config: ' + actualError.config);
 
-                ColorConsole.debug('');
+                ColorConsole.debug('debug....');
             }
         );
     }

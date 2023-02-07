@@ -2,6 +2,7 @@ const axios = require('axios');
 const ApiError = require('./ApiError');
 const FormData = require('form-data');
 const fs = require('fs');
+const ColorConsole = require('../../services/ColorConsole');
 
 class ApiClient {
     /**
@@ -24,6 +25,8 @@ class ApiClient {
      * @returns {Promise<AxiosResponse<any>>}
      */
     sendData(slug, postData, onSuccess, onError) {
+        ColorConsole.debug('URL: ' + this.baseUrl + slug);
+        ColorConsole.debug('postData: ' + JSON.stringify(postData));
         return axios({
             method: 'post',
             url: this.baseUrl + slug,
