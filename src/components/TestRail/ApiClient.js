@@ -43,7 +43,9 @@ class ApiClient {
                 // extract our error
                 const apiError = new ApiError(error);
                 // notify about an error
-                onError(apiError.getStatusCode(), apiError.getStatusText(), apiError.getErrorText());
+                const actualError = error;
+                const testRailUrl = this.baseUrl + slug;
+                onError(apiError.getStatusCode(), apiError.getStatusText(), apiError.getErrorText(), actualError, testRailUrl);
             });
     }
 

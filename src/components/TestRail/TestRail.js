@@ -133,8 +133,28 @@ class TestRail {
                     this.client.sendScreenshot(resultId, result.getScreenshotPath(), null, null);
                 }
             },
-            (statusCode, statusText, errorText) => {
+            (statusCode, statusText, errorText, actualError, testRailUrl) => {
                 ColorConsole.error('  Could not send TestRail result for case C' + result.getCaseId() + ': ' + statusCode + ' ' + statusText + ' >> ' + errorText);
+                ColorConsole.error('  Actual error: ' + actualError);
+                ColorConsole.error('  testRailUrl: ' + testRailUrl);
+
+                if (actualError.response) {
+                    // The request was made and the server responded with a status code
+                    // that falls out of the range of 2xx
+                    ColorConsole.error('actualError.response.data: ' + actualError.response.data);
+                    ColorConsole.error('actualError.response.status: ' + actualError.response.status);
+                    ColorConsole.error('actualError.response.headers: ' + actualError.response.headers);
+                } else if (actualError.request) {
+                    // The request was made but no response was received
+                    // `actualError.request` is an instance of XMLHttpRequest in the browser and an instance of
+                    // http.ClientRequest in node.js
+                    ColorConsole.error('actualError.request: ' + actualError.request);
+                } else {
+                    // Something happened in setting up the request that triggered an Error
+                    ColorConsole.error('actualError.message: ' + actualError.message);
+                }
+                ColorConsole.error('actualError.config: ' + actualError.config);
+
                 ColorConsole.debug('');
             }
         );
